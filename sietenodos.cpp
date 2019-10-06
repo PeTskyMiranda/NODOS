@@ -15,6 +15,20 @@ struct nodo{
     if(current==NULL) snodo=newnodo;
     else current->snodo=newnodo;
     }
+    void ordenar(int newvalor){
+	nodo *current=snodo;
+    nodo *newnodo=new nodo(newvalor);
+    nodo *before=this;
+	if(current==NULL){
+	before->snodo=newnodo;
+    return;
+    }else while(current!=NULL && newvalor>current->entero){
+        before=current;
+        current=current->snodo;
+    }
+    newnodo->snodo=before->snodo;
+	before->snodo=newnodo;
+    }
     void mostrar(){
     nodo *current=snodo;
     while(current!=NULL){
@@ -42,7 +56,7 @@ int main()
 		int newvalor;
 		cout<<"Ingresar datos\n";
 		cin>>newvalor;
-		l1.ingresar(newvalor);
+		l1.ordenar(newvalor);
 		break;
 		case 2:
 		cout<<"Los valores son: "<<endl;
